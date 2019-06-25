@@ -93,7 +93,7 @@ void SearchWorker::proofNumberReport() {
     QString str = "Expanded: %1\n\nAllocated: %2\nMemory: %3 MB";
     str = str.arg(locale.toString(proof->expansions));
     str = str.arg(locale.toString(proof->allocated));
-    str = str.arg(locale.toString(proof->allocated * sizeof (Node) / 1024));
+    str = str.arg(locale.toString((qulonglong) proof->allocated * sizeof (Node) / 1024));
 
     emit update(str);
 }

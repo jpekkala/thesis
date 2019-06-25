@@ -8,10 +8,24 @@ using namespace std;
 
 Handicap game;
 
+int parseColumn(char ch) {
+	for (char& firstSymbol : string("1aA")) {
+		if (ch >= firstSymbol && ch < firstSymbol + BOARD_WIDTH) {
+			return ch - firstSymbol;
+		}
+	}
+	return -1;
+}
+
 void check(string variation) {
 	game.reset();
 	for(unsigned int i = 0; i < variation.length(); i++) {
-		int x = variation.at(i) - '1';
+		char ch = variation.at(i);
+		int x = parseColumn(ch);
+		if (x == -1) {
+			cout << "Invalid column: " << ch << endl;
+			return;
+		}
 		game.drop(x);
 	}
 

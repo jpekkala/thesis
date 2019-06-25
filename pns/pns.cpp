@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <cstring>
 #include <iostream>
 #include <ctime>
 
@@ -15,7 +16,7 @@ using namespace Connect4;
 Proof game;
 
 enum Mode {
-	White, Red, Exact, Handy
+	White, Red, Exact
 };
 
 
@@ -101,7 +102,6 @@ int main(int argc, char *argv[]) {
 	if(argc == 3) var = argv[2];
 	try {
 		check(var, mode);
-		system("PAUSE");
 	}catch(const std::invalid_argument& e) {
 		std::cerr << e.what() << std::endl;
 	} catch(const std::bad_alloc&) {

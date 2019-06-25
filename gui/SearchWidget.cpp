@@ -29,7 +29,6 @@ SearchWidget::SearchWidget(BoardWidget* bw) : boardWidget(bw) {
     computerMode = false;
 
     qRegisterMetaType<SearchWorker::SearchRequest>("SearchWorker::SearchRequest");
-    //connect(workerThread, &QThread::finished, worker, &QObject::deleteLater);
     connect(worker, &SearchWorker::resultsReady, this, &SearchWidget::setResults);
     connect(worker, &SearchWorker::update, this, &SearchWidget::setText);
     connect(worker, &SearchWorker::updateLamp, this, &SearchWidget::setLamp);
@@ -40,12 +39,12 @@ SearchWidget::SearchWidget(BoardWidget* bw) : boardWidget(bw) {
     connect(fontAction, SIGNAL(triggered()), this, SLOT(changeFontSize()));
     connect(copyAction, SIGNAL(triggered()), this, SLOT(copyAll()));
     connect(boardWidget, &BoardWidget::positionChanged, this, &SearchWidget::setVariation);
+    connect(this, &SearchWidget::destroyed, workerThread, &QObject::deleteLater);
+    connect(this, &SearchWidget::destroyed, worker, &QObject::deleteLater);
 }
 
 SearchWidget::~SearchWidget() {
-    workerThread->terminate();
-    delete workerThread;
-    delete worker;
+
 }
 
 void SearchWidget::changeFontSize() {

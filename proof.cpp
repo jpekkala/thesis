@@ -209,7 +209,7 @@ void Proof::expand(Node* parent) {
         Successor& s = succ[i];
 
         Node& n = parent->children[i];
-        n.value = evaluateChildWithHandicap(s);
+        n.value = evaluateChild(s);
         n.move = s.pop ? 'A' + s.column : 'a' + s.column;
         n.disjunction = !parent->disjunction;
         n.expanded = false;

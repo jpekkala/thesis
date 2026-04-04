@@ -7,7 +7,7 @@ The project can be built with or without a GUI.
 
 ### Console version
 
-In Ubuntu 18.04:
+In Ubuntu 24.04:
 ```
 sudo apt install g++
 cd nogui
@@ -16,9 +16,9 @@ make
 
 ### GUI version
 
-In Ubuntu 18.04:
+In Ubuntu 24.04:
 ```
-sudo apt install g++ qt5-default
+sudo apt install g++ qtbase5-dev qt5-qmake
 qmake
 make
 ```
